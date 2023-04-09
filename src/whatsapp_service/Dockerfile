@@ -24,7 +24,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY ./src/whatsapp_service .
+COPY . .
 RUN npm install
 
 # Expose the port
