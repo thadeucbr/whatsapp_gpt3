@@ -7,7 +7,7 @@ FROM node:18
 WORKDIR /usr/src/app
 
 # Install app dependencies
-# COPY package*.json ./
+COPY ./src/redis_service .
 RUN npm install
 
 # Expose the port
