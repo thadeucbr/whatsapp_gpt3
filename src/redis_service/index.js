@@ -5,7 +5,7 @@ import { getUserConversation, saveMessageToCache } from './redisCache.js';
 const app = express();
 app.use(express.json());
 
-const client = new Redis();
+const client = new Redis({ host: 'redis' });
 
 client.on('connect', () => {
   console.log('Conectado ao Redis');
