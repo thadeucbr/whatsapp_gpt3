@@ -18,8 +18,6 @@ export async function getGptResponse(messages) {
       temperature: 0.7,
     };
 
-    console.log("JSON data:", JSON.stringify(data));
-
     const response = await axios.post(url, data, { headers: headers });
     const completion = response.data.choices[0].message.content.trim();
     return completion;

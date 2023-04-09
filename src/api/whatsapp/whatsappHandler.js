@@ -10,7 +10,7 @@ export async function handleMessage(venomClient, message) {
   if (message.chatId === targetGroupId) {
     try {
       const userMessages = getUserConversation(userId);
-      userMessages.push({ role: `user:${userId}`, content: message.body })
+      userMessages.push({ role: `user`, content: message.body })
       const messages = [
         {
           role: 'system',
