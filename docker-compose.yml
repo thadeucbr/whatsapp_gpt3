@@ -29,4 +29,4 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - redis-data:/data
+      - ./redis-data:/data
