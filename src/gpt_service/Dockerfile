@@ -7,7 +7,7 @@ FROM node:18
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY ./src/gpt_service .
+COPY . .
 RUN npm install
 
 # Expose the port
