@@ -27,7 +27,7 @@ whatsapp_gpt3/
 1. Clone o repositório para sua máquina local:
 
 ```
-git clone https://github.com/seu_usuario/seu_projeto.git
+git clone git@github.com:thadeucbr/whatsapp_gpt3.git
 ```
 
 2. Navegue até a pasta do projeto:
