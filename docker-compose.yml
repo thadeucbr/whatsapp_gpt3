@@ -7,6 +7,7 @@ services:
       - '3000:3000'
     volumes:
       - ./src/gpt_service:/usr/src/app
+    restart: always
 
   redis_service:
     build: ./src/redis_service
@@ -15,6 +16,7 @@ services:
       - '3001:3001'
     volumes:
       - ./src/redis_service:/usr/src/app
+    restart: always
 
   whatsapp_service:
     build: ./src/whatsapp_service
@@ -23,6 +25,7 @@ services:
       - '3002:3002'
     volumes:
       - ./src/whatsapp_service:/usr/src/app
+    restart: always
 
   redis:
     image: 'redis:latest'
@@ -31,3 +34,4 @@ services:
       - '6379:6379'
     volumes:
       - ./redis-data:/data
+    restart: always
