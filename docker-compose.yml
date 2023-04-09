@@ -1,29 +1,32 @@
 version: '3.8'
 services:
   gpt_service:
-    image: node:latest
     ports:
       - '3000:3000'
     volumes:
       - ./src/gpt_service:/usr/src/app
+    working_dir: /usr/src/app
+    build: ./src/gpt_service
 
   redis_service:
-    image: node:latest
     ports:
       - '3001:3001'
     volumes:
       - ./src/redis_service:/usr/src/app
+    working_dir: /usr/src/app
+    build: ./src/redis_service
 
   whatsapp_service:
-    build: ./src/whatsapp_service
     ports:
       - '3002:3002'
     volumes:
       - ./src/whatsapp_service:/usr/src/app
+    working_dir: /usr/src/app
+    build: ./src/whatsapp_service
 
   redis:
     image: 'redis:latest'
     ports:
       - '6379:6379'
     volumes:
-      - ./redis-data:/data
+      - redis-data:/data

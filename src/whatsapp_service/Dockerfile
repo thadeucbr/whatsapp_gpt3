@@ -1,7 +1,7 @@
 # Dockerfile - whatsapp_service
 
 # Base image
-FROM node:18
+FROM node:latest
 
 # Install Chromium dependencies
 RUN apt-get update && apt-get install -y \
@@ -21,10 +21,10 @@ ENV CHROMIUM_PATH=/usr/bin/chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 # Create app directory
-WORKDIR /usr/src/app
+# WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY package*.json ./
+# COPY package*.json ./
 RUN npm install
 
 # Expose the port
