@@ -6,8 +6,8 @@ const targetGroupId = '120363130396165444@g.us';
 export async function handleMessage(venomClient, message) {
   const author = message.author || message.from;
   const userId = author.split('@')[0];
-
-  if (message.chatId === targetGroupId) {
+  console.log(message)
+  if (message.chatId === targetGroupId || message.chatId === '120363044073402230@g.us') {
     try {
       const userMessages = getUserConversation(userId);
       userMessages.push({ role: `user`, content: message.body })
