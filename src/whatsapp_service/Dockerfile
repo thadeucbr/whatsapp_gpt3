@@ -21,7 +21,7 @@ ENV CHROMIUM_PATH=/usr/bin/chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 # Create app directory
-# WORKDIR /usr/src/app
+WORKDIR /usr/src/app
 
 # Install app dependencies
 # COPY package*.json ./
