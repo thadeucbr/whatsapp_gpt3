@@ -12,7 +12,7 @@ export async function getGptResponse(messages) {
     const data = {
       model: 'gpt-3.5-turbo',
       messages: messages,
-      max_tokens: 200,
+      max_tokens: 2000,
       n: 1,
       stop: null,
       temperature: 0.7,

@@ -1,5 +1,5 @@
 # Escolha uma imagem base que inclua o Node.js
-FROM node:14
+FROM node:18
 
 # Instale as dependências necessárias para o Venom
 RUN apt-get update && \

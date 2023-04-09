@@ -1,12 +1,35 @@
-version: "3.9"
+version: '3.8'
 services:
-  app:
-    build: .
-    image: chatbot-whatsapp:v1.0.0-ALPHA
+  gpt_service:
+    build: ./src/gpt_service
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    environment:
-      - NODE_ENV=production
+      - gpt-service-data:/usr/src/app
+
+  redis_service:
+    build: ./src/redis_service
+    ports:
+      - '3001:3001'
+    volumes:
+      - redis-service-data:/usr/src/app
+
+  whatsapp_service:
+    build: ./src/whatsapp_service
+    ports:
+      - '3002:3002'
+    volumes:
+      - whatsapp-service-data:/usr/src/app
+
+  redis:
+    image: 'redis:latest'
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
+
+volumes:
+  gpt-service-data:
+  redis-service-data:
+  whatsapp-service-data:
+  redis-data:

@@ -1,8 +1,6 @@
-import 'dotenv/config';
 import venom from 'venom-bot';
-import { handleMessage } from './whatsapp/whatsappHandler.js';
+import { handleMessage } from './whatsappHandler.js';
 
-console.log(process.env.OPENAI_API_KEY)
 venom
   .create()
   .then((client) => {
