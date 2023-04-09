@@ -2,6 +2,7 @@ version: '3.8'
 services:
   gpt_service:
     build: ./src/gpt_service
+    container_name: gpt_service
     ports:
       - '3000:3000'
     volumes:
@@ -9,6 +10,7 @@ services:
 
   redis_service:
     build: ./src/redis_service
+    container_name: redis_service
     ports:
       - '3001:3001'
     volumes:
@@ -16,6 +18,7 @@ services:
 
   whatsapp_service:
     build: ./src/whatsapp_service
+    container_name: whatsapp_service
     ports:
       - '3002:3002'
     volumes:
@@ -23,6 +26,7 @@ services:
 
   redis:
     image: 'redis:latest'
+    container_name: redis
     ports:
       - '6379:6379'
     volumes:
