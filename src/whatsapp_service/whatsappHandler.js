@@ -25,13 +25,12 @@ export async function handleMessage(venomClient, message) {
           },
           { role: 'user', content: message.body }
         );
-      } else {
-        await saveMessageToCache(userId, 'user', message.body);
       }
 
       const messages = [...userMessages];
 
       const completion = await getGptResponse(messages);
+      await saveMessageToCache(userId, 'user', message.body);
       await saveMessageToCache(userId, 'system', completion);
       sendMessageToGroup(venomClient, message.chatId, completion);
     } catch (error) {
