@@ -4,7 +4,9 @@ import { getUserConversation, saveMessageToCache } from './cacheClient.js';
 const targetGroupId = '120363130396165444@g.us';
 
 export async function handleMessage(venomClient, message) {
+
   const author = message.author || message.from;
+  console.log(author)
   const userId = author.split('@')[0];
   if (message.chatId === targetGroupId || message.chatId === '120363044073402230@g.us') {
     try {
