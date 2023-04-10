@@ -1,6 +1,5 @@
 import { getGptResponse } from './gptClient.js';
-import { getUserConversation, saveMessageToCache } from './cacheClient.js';
-import { deleteUserConversation } from '../redis_service/redisCache.js';
+import { getUserConversation, saveMessageToCache, deleteUserConversationCache } from './cacheClient.js';
 
 const targetGroupId = '120363130396165444@g.us';
 export async function sendMessageToGroup(venomClient, chatId, message) {
@@ -14,7 +13,7 @@ export async function sendMessageToGroup(venomClient, chatId, message) {
 
 async function createNewContext(message, userId, isReply) {
   if (isReply) {
-    await deleteUserConversation(userId);
+    await deleteUserConversationCache(userId);
     await saveMessageToCache(userId, 'system', message.quotedMsg.body);
     return [
       {
