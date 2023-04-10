@@ -30,6 +30,7 @@ export async function handleMessage(venomClient, message) {
       const messages = [...userMessages];
 
       const completion = await getGptResponse(messages);
+      console.log(completion)
       await saveMessageToCache(userId, 'user', message.body);
       await saveMessageToCache(userId, 'system', completion);
       sendMessageToGroup(venomClient, message.chatId, completion);
