@@ -7,7 +7,7 @@ export async function getUserConversation(userId) {
     const completion = response.data.messages;
     return completion;
   } catch (error) {
-    console.error('Erro ao consultar o serviço Redis:', error);
+    console.error('Erro ao consultar o serviço Redis:', error.message);
     return [];
   }
 }
@@ -19,7 +19,7 @@ export async function saveMessageToCache(userId, role, content) {
     const completion = response.status;
     return completion;
   } catch (error) {
-    console.error('Erro ao consultar o serviço Redis:', error);
+    console.error('Erro ao consultar o serviço Redis:', error.message);
     return [];
   }
 }
