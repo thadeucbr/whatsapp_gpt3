@@ -1,7 +1,7 @@
 # Dockerfile - whatsapp_service
 
 # Base image
-FROM node:latest
+FROM node:14
 
 # Install Chromium dependencies
 RUN apt-get update && apt-get install -y \
@@ -24,8 +24,9 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY . .
+COPY package*.json ./
 RUN npm install
+RUN npm install puppeteer@5.5.0
 
 # Expose the port
 EXPOSE 3002
