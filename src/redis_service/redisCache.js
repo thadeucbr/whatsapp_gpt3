@@ -29,7 +29,7 @@ export async function saveMessageToCache({ userId, role, content }, client) {
 
     userMessages.push({ role, content });
     console.log(countTokens(userMessages))
-    while (countTokens(userMessages) > 1000) {
+    if (countTokens(userMessages) > 1000) {
       userMessages.shift();
     }
 
