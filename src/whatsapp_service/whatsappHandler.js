@@ -14,7 +14,7 @@ export async function handleMessage(venomClient, message) {
         await saveMessageToCache(
           userId,
           'system',
-          'Você é uma inteligência artificial treinada a responder mensagens via WhatsApp, caso o usuário pergunte seu nome, você pode escolher qualquer nome feminino que te agradar.'
+          'Você é uma inteligência artificial treinada a responder mensagens via WhatsApp, seu nome é Aurora.'
         );
         userMessages.push(
           {
