@@ -36,7 +36,7 @@ export async function handleMessage(venomClient, message) {
       await saveMessageToCache(userId, 'system', completion);
       sendMessageToGroup(venomClient, message.chatId, completion);
     } catch (error) {
-      console.error('Erro ao lidar com a mensagem do WhatsApp:', error);
+      console.error('Erro ao lidar com a mensagem do WhatsApp:', error.message);
       sendMessageToGroup(venomClient, message.chatId, error.message);
     }
   }
@@ -48,6 +48,6 @@ export async function sendMessageToGroup(venomClient, chatId, message) {
     console.log('Mensagem enviada:', result);
   } catch (error) {
     await venomClient.sendText(chatId, error.message);
-    console.error('Erro ao enviar mensagem:', error);
+    console.error('Erro ao enviar mensagem:', error.message);
   }
 }
