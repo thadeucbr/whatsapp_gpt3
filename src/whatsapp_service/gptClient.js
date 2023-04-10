@@ -7,7 +7,7 @@ export async function getGptResponse(messages) {
     const completion = response.data.completion;
     return completion;
   } catch (error) {
-    console.error('Erro ao consultar o serviço ChatGPT:', error);
-    throw error;
+    console.error('Erro ao consultar o serviço ChatGPT:', error.message);
+    // throw error;
   }
 }
