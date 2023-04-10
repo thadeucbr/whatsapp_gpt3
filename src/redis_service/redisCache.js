@@ -34,7 +34,7 @@ export async function saveMessageToCache({ userId, role, content }, client) {
     }
 
     conversation[userId] = userMessages;
-    await setAsync('conversationStats', JSON.stringify(conversation), 'EX', 3600);
+    await setAsync('conversationStats', JSON.stringify(conversation), 'EX', 60);
   } catch (error) {
     throw error;
   }
