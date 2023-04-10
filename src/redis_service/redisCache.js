@@ -1,5 +1,12 @@
 import { promisify } from 'util';
 
+function countTokens(messages) {
+  return messages.reduce((totalTokens, message) => {
+    return totalTokens + message.content.split(/\s+/).length;
+  }, 0);
+}
+
+
 export async function getUserConversation(userId, client) {
   try {
     const getAsync = promisify(client.get).bind(client);
