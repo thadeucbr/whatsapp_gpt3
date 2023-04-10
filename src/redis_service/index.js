@@ -39,5 +39,16 @@ app.post('/userconversation/:userId', async (req, res) => {
   }
 });
 
+app.delete('/clearRedis', async (req, res) => {
+  try {
+    await client.flushall();
+    res.status(200).send('Redis data cleared');
+  } catch (error) {
+    console.error('Error clearing Redis data:', error);
+    res.status(500).send({ error: 'Error clearing Redis data' });
+  }
+});
+
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`GPT Service listening on port ${port}`));
