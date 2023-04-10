@@ -47,4 +47,21 @@ export async function saveMessageToCache({ userId, role, content }, client) {
   }
 }
 
+export async function deleteUserConversation(userId, client) {
+  try {
+    const getAsync = promisify(client.get).bind(client);
+    const setAsync = promisify(client.set).bind(client);
+    const conversationStats = await getAsync('conversationStats');
+    const conversation = JSON.parse(conversationStats) || {};
+
+    if (conversation.hasOwnProperty(userId)) {
+      delete conversation[userId];
+      await setAsync('conversationStats', JSON.stringify(conversation), 'EX', 600);
+    } else {
+      throw new Error(`User with ID ${userId} not found.`);
+    }
+  } catch (error) {
+    throw error;
+  }
+}
 

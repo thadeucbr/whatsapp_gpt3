@@ -23,3 +23,15 @@ export async function saveMessageToCache(userId, role, content) {
     return [];
   }
 }
+
+export async function deleteUserConversationCache(userId) {
+  try {
+    const url = `http://redis_service:3001/userconversation/${userId}`;
+    const response = await axios.delete(url);
+    const completion = response.status;
+    return completion;
+  } catch (error) {
+    console.error('Erro ao consultar o serviço Redis:', error.message);
+    return [];
+  }
+}
