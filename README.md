@@ -1,6 +1,6 @@
 # Projeto Chatbot WhatsApp com GPT-3
 
-Este projeto é um chatbot desenvolvido para interagir com usuários do WhatsApp, utilizando a API GPT-3 da OpenAI para gerar respostas inteligentes e coesas.
+Este projeto é um chatbot desenvolvido para interagir com usuários do WhatsApp, utilizando a API GPT-3 da OpenAI para gerar respostas inteligentes e coesas. O projeto está disponível tanto em uma estrutura [monolitica](https://github.com/thadeucbr/whatsapp_gpt3) quanto em [microsserviços](https://github.com/thadeucbr/whatsapp_gpt3/tree/microservicos)
 
 ## Estrutura do projeto
 ```
