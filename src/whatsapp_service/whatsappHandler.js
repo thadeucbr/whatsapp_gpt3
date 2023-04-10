@@ -36,6 +36,7 @@ export async function handleMessage(venomClient, message) {
       sendMessageToGroup(venomClient, message.chatId, completion);
     } catch (error) {
       console.error('Erro ao lidar com a mensagem do WhatsApp:', error);
+      sendMessageToGroup(venomClient, message.chatId, error.message);
     }
   }
 }
