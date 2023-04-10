@@ -1,5 +1,12 @@
 import { promisify } from 'util';
 
+function countTokens(messages) {
+  return messages.reduce((totalTokens, message) => {
+    return totalTokens + message.content.split(/\s+/).length;
+  }, 0);
+}
+
+
 export async function getUserConversation(userId, client) {
   try {
     const getAsync = promisify(client.get).bind(client);
@@ -19,10 +26,17 @@ export async function saveMessageToCache({ userId, role, content }, client) {
     const conversationStats = await getAsync('conversationStats');
     const conversation = JSON.parse(conversationStats) || {};
     const userMessages = conversation[userId] || [];
+
     userMessages.push({ role, content });
+    console.log(countTokens(userMessages))
+    if (countTokens(userMessages) > 1000) {
+      userMessages.shift();
+    }
+
     conversation[userId] = userMessages;
-    await setAsync('conversationStats', JSON.stringify(conversation), 'EX', 1200);
+    await setAsync('conversationStats', JSON.stringify(conversation), 'EX', 3600);
   } catch (error) {
     throw error;
   }
 }
+
