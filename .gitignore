@@ -1,3 +1,4 @@
 .env
 tokens
 node_modules
+redis-data

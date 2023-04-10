@@ -1,7 +1,7 @@
 # Dockerfile - gpt_service
 
 # Base image
-FROM node:18
+FROM node:latest
 
 # Create app directory
 WORKDIR /usr/src/app
