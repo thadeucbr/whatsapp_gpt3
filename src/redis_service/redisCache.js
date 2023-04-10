@@ -2,7 +2,7 @@ import { promisify } from 'util';
 
 function countTokens(messages) {
   return messages.reduce((totalTokens, message) => {
-    return totalTokens + message.content.split(' ').length;
+    return totalTokens + message?.content.split(' ').length;
   }, 0);
 }
 
