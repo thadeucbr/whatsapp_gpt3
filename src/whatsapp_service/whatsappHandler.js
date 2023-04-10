@@ -30,7 +30,6 @@ export async function handleMessage(venomClient, message) {
       const messages = [...userMessages];
 
       const completion = await getGptResponse(messages);
-      console.log(completion)
       await saveMessageToCache(userId, 'user', message.body);
       await saveMessageToCache(userId, 'system', completion);
       sendMessageToGroup(venomClient, message.chatId, completion);
@@ -46,6 +45,7 @@ export async function sendMessageToGroup(venomClient, chatId, message) {
     const result = await venomClient.sendText(chatId, message);
     console.log('Mensagem enviada:', result);
   } catch (error) {
+    await venomClient.sendText(chatId, error.message);
     console.error('Erro ao enviar mensagem:', error);
   }
 }
