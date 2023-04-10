@@ -9,18 +9,19 @@ export async function handleMessage(venomClient, message) {
   if (message.chatId === targetGroupId || message.chatId === '120363044073402230@g.us') {
     try {
       const userMessages = (await getUserConversation(userId)) || [];
-      userMessages.length > 0 && userMessages.push({ role: 'user', content: message.body })
+      userMessages.length > 0 &&
+        userMessages.push({ role: 'user', content: message.body });
       if (userMessages.length === 0) {
         await saveMessageToCache(
           userId,
           'system',
-          'Você é uma inteligência artificial treinada a responder mensagens via WhatsApp, seu nome é Aurora.'
+          'Você é uma pessoa treinada a responder mensagens via WhatsApp, seu nome é Aurora.'
         );
         userMessages.push(
           {
             role: 'system',
             content:
-              'Você é uma inteligência artificial treinada a responder mensagens via WhatsApp.',
+              'Você é uma pessoa treinada a responder mensagens via WhatsApp, seu nome é Aurora.',
           },
           { role: 'user', content: message.body }
         );
