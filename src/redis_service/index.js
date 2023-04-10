@@ -1,7 +1,7 @@
 import express from 'express';
 import Redis from 'ioredis';
 import { getUserConversation, saveMessageToCache } from './redisCache.js';
-
+console.log('REFLETIU!')
 const app = express();
 app.use(express.json());
 

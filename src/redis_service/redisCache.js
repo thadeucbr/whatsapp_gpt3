@@ -2,7 +2,10 @@ import { promisify } from 'util';
 
 function countTokens(messages) {
   return messages.reduce((totalTokens, message) => {
-    return totalTokens + message?.content.split(' ').length;
+    if (message.content) {
+      return totalTokens + message.content.length;
+    }
+    return totalTokens;
   }, 0);
 }
 
@@ -29,14 +32,19 @@ export async function saveMessageToCache({ userId, role, content }, client) {
 
     userMessages.push({ role, content });
     console.log(countTokens(userMessages))
-    while (countTokens(userMessages) > 1000) {
+    while (countTokens(userMessages) > 4000) {
+      console.log(countTokens(userMessages))
       userMessages.shift();
     }
 
-    conversation[userId] = userMessages;
+    // Filtrar mensagens com conteúdo vazio
+    const filteredUserMessages = userMessages.filter(message => message.content);
+
+    conversation[userId] = filteredUserMessages;
     await setAsync('conversationStats', JSON.stringify(conversation), 'EX', 600);
   } catch (error) {
     throw error;
   }
 }
+
 
