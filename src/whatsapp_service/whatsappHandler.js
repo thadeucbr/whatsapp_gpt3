@@ -42,14 +42,12 @@ async function createNewContext(message, userId, isReply) {
 async function loadContext(venomClient, message, userId) {
   try {
     let userMessages;
-    
+    console.log(message)
     if (message.quotedMsg) {
       userMessages = await createNewContext(message, userId, true)
     } else {
-      userMessages =
-        (await getUserConversation(userId)) || (await createNewContext(message, userId, false));
-  
-      userMessages.length > 0 && userMessages.push({ role: 'user', content: message.body });
+      userMessages = (await getUserConversation(userId)) || [];
+        userMessages.length > 0 ? userMessages.push({ role: 'user', content: message.body }) : await createNewContext(message, userId, false);
     }
 
     const completion = await getGptResponse(userMessages);
