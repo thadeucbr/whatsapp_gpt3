@@ -16,14 +16,14 @@ export async function handleMessage(venomClient, message) {
       if (userMessages.length === 0) {
         await saveMessageToCache(
           userId,
-          'system',
-          'Você é uma pessoa treinada a responder mensagens via WhatsApp, seu nome é Aurora.'
+          'assistant',
+          'Seu nome é Aurora, você é uma inteligencia virtual treinada para responder perguntas.'
         );
         userMessages.push(
           {
-            role: 'system',
+            role: 'assistant',
             content:
-              'Você é uma pessoa treinada a responder mensagens via WhatsApp, seu nome é Aurora.',
+              'Seu nome é Aurora, você é uma inteligencia virtual treinada para responder perguntas.',
           },
           { role: 'user', content: message.body }
         );
@@ -34,7 +34,7 @@ export async function handleMessage(venomClient, message) {
       const completion = await getGptResponse(messages);
 
       await saveMessageToCache(userId, 'user', message.body);
-      await saveMessageToCache(userId, 'system', completion);
+      await saveMessageToCache(userId, 'assistant', completion);
       sendMessageToGroup(venomClient, message.chatId, completion);
     } catch (error) {
       await sendMessageToGroup(venomClient, message.chatId, error.message);
