@@ -5,7 +5,6 @@ import { getGptResponse } from './gptClient.js';
 const app = express();
 app.use(express.json());
 
-console.log(process.env.OPENAI_API_KEY)
 app.post('/gpt', async (req, res) => {
   try {
     const messages = req.body.messages;
@@ -17,6 +16,5 @@ app.post('/gpt', async (req, res) => {
     res.status(500).send({ error: 'Erro ao consultar a API do ChatGPT' });
   }
 });
-
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`GPT Service listening on port ${port}`));
