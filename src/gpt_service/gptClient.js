@@ -9,16 +9,17 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 
-export async function getGptResponse(messages) {
+export async function getGptResponse(messages, user) {
   try {
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages
+      messages,
+      user
     }
     );
   return response.data.choices[0].message.content.trim()
   } catch (error) {
-    error.message
+    console.log(error.message)
   }
 }
 

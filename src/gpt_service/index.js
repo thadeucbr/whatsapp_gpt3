@@ -8,8 +8,8 @@ app.use(express.json());
 app.post('/gpt', async (req, res) => {
   try {
     const messages = req.body.messages;
-    console.log(messages)
-    const completion = await getGptResponse(messages);
+    const user = req.body.user;
+    const completion = await getGptResponse(messages, user);
     res.send({ completion });
   } catch (error) {
     console.error('Erro ao consultar a API do ChatGPT:', error);
